@@ -1,0 +1,39 @@
+{
+  "products": [
+    {
+      "id": "4",
+      "name": "Running Shoes",
+      "brand": "SportPro",
+      "category": "Footwear",
+      "price": 129.99,
+      "created": "2024-01-30T16:20:00Z",
+      "action": "purchase"
+    },
+    {
+      "id": "6",
+      "name": "Desk Lamp",
+      "brand": "HomeEssentials",
+      "category": "Home & Kitchen",
+      "price": 34.95,
+      "created": "2024-03-12T11:10:00Z",
+      "action": "review"
+    },
+    {
+      "id": "7",
+      "name": "Yoga Mat",
+      "brand": "FitLife",
+      "category": "Sports & Fitness",
+      "price": 24.99,
+      "created": "2024-01-22T13:25:00Z",
+      "action": "share"
+    },
+    {
+      "id": "461e",
+      "name": "phonex ",
+      "brand": "computer",
+      "category": "Electronics",
+      "price": "2111",
+      "created": "2026-01-28"
+    }
+  ]
+}
