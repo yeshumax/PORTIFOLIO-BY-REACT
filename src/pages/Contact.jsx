@@ -51,8 +51,8 @@ const Contact = () => {
   ];
 
   return (
-    <div class="page-wrapper">
-      <div class="page-background">
+    <div className="page-wrapper">
+      <div className="page-background">
         <div className="contact-page py-5">
           <div className="container">
             <div className="row mb-5">

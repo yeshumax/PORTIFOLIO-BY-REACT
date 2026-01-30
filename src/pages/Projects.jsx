@@ -6,18 +6,6 @@ const Projects = () => {
 
   const projects = [
     {
-      id: 1,
-      title: "E-commerce Platform",
-      category: "Full Stack",
-      description:
-        "A complete e-commerce solution with user authentication, payment integration, and admin dashboard.",
-      image:
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      link: "#",
-      github: "#",
-    },
-    {
       id: 2,
       title: "Tax Management System",
       category: "Web App",
@@ -53,30 +41,6 @@ const Projects = () => {
       link: "#",
       github: "#",
     },
-    {
-      id: 5,
-      title: "Task Management App",
-      category: "Web App",
-      description:
-        "Collaborative task management application with drag-drop interface and real-time updates.",
-      image:
-        "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
-      technologies: ["React", "Redux", "Socket.io", "Tailwind CSS"],
-      link: "#",
-      github: "#",
-    },
-    {
-      id: 6,
-      title: "Social Media Dashboard",
-      category: "Full Stack",
-      description:
-        "Analytics dashboard for social media platforms with data visualization and insights.",
-      image:
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
-      technologies: ["React", "Express", "PostgreSQL", "D3.js"],
-      link: "#",
-      github: "#",
-    },
   ];
 
   // Filter projects based on selected category
@@ -92,8 +56,8 @@ const Projects = () => {
   ];
 
   return (
-    <div class="page-wrapper">
-      <div class="page-background">
+    <div className="page-wrapper">
+      <div className="page-background">
         <div className="projects-page py-5 mt-5">
           <div className="container">
             {/* Header Section */}
@@ -225,7 +189,7 @@ const Projects = () => {
             <div className="row mt-5 pt-5">
               <div className="col-lg-8 mx-auto text-center">
                 <div className="card border-0 bg-gradient-primary text-white shadow-lg">
-                  <div className="card-body p-5">
+                  <div className="card-body p-5 bg-dark br-8">
                     <h2 className="display-6 fw-bold mb-3">
                       Have a Project in Mind?
                     </h2>

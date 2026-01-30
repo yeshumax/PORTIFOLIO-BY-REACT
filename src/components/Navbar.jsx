@@ -6,7 +6,7 @@ function Navbar() {
   const [expanded, setExpanded] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navbarRef = useRef(null);
-  const [activeHover, setActiveHover] = useState(null);
+  const [, setActiveHover] = useState(null);
 
   const isActive = (path) => {
     if (path === "/") {

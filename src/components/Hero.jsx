@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import YESHWOND from "./YESHWOND.jpg";
-const Hero = () => {
+function Hero() {
   return (
     <section className="hero-section position-relative overflow-hidden d-flex align-items-center min-vh-100">
       {/* Animated Background Elements */}
@@ -67,7 +67,7 @@ const Hero = () => {
               </div>
               <div className="col-4">
                 <div className="text-center">
-                  <h3 className="fw-bold display-6 mb-1">5+</h3>
+                  <h3 className="fw-bold display-6 mb-1">0</h3>
                   <p className="small opacity-90">Years Exp</p>
                 </div>
               </div>
@@ -180,6 +180,6 @@ const Hero = () => {
       </div>
     </section>
   );
-};
+}
 
 export default Hero;

@@ -1,14 +1,7 @@
-import React from "react";
+import { Link } from "react-router-dom";
 const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
   };
 
   return (
@@ -81,49 +74,48 @@ const Footer = () => {
           {/* Links */}
           <div className="col-lg-8">
             <div className="row">
-              {/* Quick Links */}
               <div className="col-md-4 mb-4 mb-md-0">
                 <h4 className="h5 mb-3 text-gradient-accent">QUICK LINKS</h4>
                 <ul className="list-unstyled">
                   <li className="mb-2">
-                    <button
+                    <Link
+                      to="/"
                       className="hover-link text-light opacity-75 text-decoration-none border-0 bg-transparent p-0 text-start"
-                      onClick={scrollToTop}
                     >
                       Home
-                    </button>
+                    </Link>
                   </li>
                   <li className="mb-2">
-                    <button
+                    <Link
+                      to="/about"
                       className="hover-link text-light opacity-75 text-decoration-none border-0 bg-transparent p-0 text-start"
-                      onClick={() => scrollToSection("about")}
                     >
                       About
-                    </button>
+                    </Link>
                   </li>
                   <li className="mb-2">
-                    <button
+                    <Link
+                      to="/skills"
                       className="hover-link text-light opacity-75 text-decoration-none border-0 bg-transparent p-0 text-start"
-                      onClick={() => scrollToSection("skills")}
                     >
                       Skills
-                    </button>
+                    </Link>
                   </li>
                   <li className="mb-2">
-                    <button
+                    <Link
+                      to="/projects"
                       className="hover-link text-light opacity-75 text-decoration-none border-0 bg-transparent p-0 text-start"
-                      onClick={() => scrollToSection("projects")}
                     >
                       Projects
-                    </button>
+                    </Link>
                   </li>
                   <li className="mb-2">
-                    <button
+                    <Link
+                      to="/contact"
                       className="hover-link text-light opacity-75 text-decoration-none border-0 bg-transparent p-0 text-start"
-                      onClick={() => scrollToSection("contact")}
                     >
                       Contact
-                    </button>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -167,7 +159,7 @@ const Footer = () => {
                   <li className="mb-3">
                     <div className="text-light opacity-75">Email</div>
                     <a
-                      href="mailto:lisanwory@gmail.com"
+                      href="https://lisanworky@gmail.com/"
                       className="contact-link text-light text-decoration-none d-block mt-1"
                     >
                       lisanwory@gmail.com
@@ -185,7 +177,7 @@ const Footer = () => {
                   <li className="mb-3">
                     <div className="text-light opacity-75">Location</div>
                     <span className="text-light opacity-75 d-block mt-1 location-text">
-                      ETHIOPIA, TEPI CAMPUS
+                      ETHIOPIA, TEPI CAMPUSE
                     </span>
                   </li>
                 </ul>
@@ -198,29 +190,6 @@ const Footer = () => {
 
         {/* Newsletter & Copyright */}
         <div className="row align-items-center">
-          <div className="col-lg-6 mb-4 mb-lg-0">
-            <div className="newsletter-section">
-              <h5 className="mb-3 text-gradient-accent">Stay Updated</h5>
-              <p className="text-light opacity-75 mb-3">
-                Subscribe to my newsletter for the latest projects and updates.
-              </p>
-              <form className="d-flex flex-wrap gap-2 newsletter-form">
-                <input
-                  type="email"
-                  className="form-control bg-transparent border-light text-light newsletter-input"
-                  placeholder="Your email"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="btn btn-gradient btn-animated newsletter-btn"
-                >
-                  Subscribe
-                </button>
-              </form>
-            </div>
-          </div>
-
           <div className="col-lg-6 text-lg-end">
             <p className="text-light opacity-75 mb-2 copyright-text">
               © {new Date().getFullYear()} Yeshwond Lismwork. All rights

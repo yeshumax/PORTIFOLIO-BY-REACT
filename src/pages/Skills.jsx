@@ -101,7 +101,38 @@ const Skills = () => {
       color: "#FF6B35",
     },
   ];
-
+  const myJorny = [
+    {
+      year: "2018",
+      title: "Started Web Development",
+      description: "Learned HTML, CSS, and JavaScript basics",
+    },
+    {
+      year: "2019",
+      title: "Mastered Frontend",
+      description: "Deep dive into React, Bootstrap, and modern CSS",
+    },
+    {
+      year: "2020",
+      title: "Backend Development",
+      description: "Learned Node.js, Express, and MongoDB",
+    },
+    {
+      year: "2021",
+      title: "UI/UX Design",
+      description: "Studied design principles and tools like Figma",
+    },
+    {
+      year: "2022",
+      title: "Full Stack Projects",
+      description: "Built complex applications with React & Node.js",
+    },
+    {
+      year: "2023",
+      title: "Advanced Concepts",
+      description: "TypeScript, Advanced Patterns, Performance Optimization",
+    },
+  ];
   const categories = [
     {
       id: "all",
@@ -187,8 +218,8 @@ const Skills = () => {
       : technicalSkills.filter((skill) => skill.category === activeTab);
 
   return (
-    <div class="page-wrapper">
-      <div class="page-background">
+    <div className="page-wrapper">
+      <div className="page-background">
         <div className="skills-page py-5 mt-5">
           <div className="container">
             {/* Hero Section */}
@@ -342,43 +373,7 @@ const Skills = () => {
                       Learning Journey
                     </h2>
                     <div className="timeline">
-                      {[
-                        {
-                          year: "2018",
-                          title: "Started Web Development",
-                          description:
-                            "Learned HTML, CSS, and JavaScript basics",
-                        },
-                        {
-                          year: "2019",
-                          title: "Mastered Frontend",
-                          description:
-                            "Deep dive into React, Bootstrap, and modern CSS",
-                        },
-                        {
-                          year: "2020",
-                          title: "Backend Development",
-                          description: "Learned Node.js, Express, and MongoDB",
-                        },
-                        {
-                          year: "2021",
-                          title: "UI/UX Design",
-                          description:
-                            "Studied design principles and tools like Figma",
-                        },
-                        {
-                          year: "2022",
-                          title: "Full Stack Projects",
-                          description:
-                            "Built complex applications with React & Node.js",
-                        },
-                        {
-                          year: "2023",
-                          title: "Advanced Concepts",
-                          description:
-                            "TypeScript, Advanced Patterns, Performance Optimization",
-                        },
-                      ].map((milestone, index) => (
+                      {myJorny.map((milestone, index) => (
                         <div key={index} className="timeline-item">
                           <div className="timeline-marker">
                             <i className="bi bi-circle-fill"></i>
