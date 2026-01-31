@@ -1,73 +1,173 @@
-import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 
 function Navbar() {
+  const location = useLocation();
+  const [expanded, setExpanded] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navbarRef = useRef(null);
+  const [, setActiveHover] = useState(null);
 
+  const isActive = (path) => {
+    if (path === "/") {
+      return location.pathname === "/" ? "active" : "";
+    }
+    return location.pathname.startsWith(path) ? "active" : "";
+  };
+
+  const closeNavbar = () => {
+    setExpanded(false);
+  };
+
+  // Close navbar when clicking outside on mobile
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        expanded &&
+        navbarRef.current &&
+        !navbarRef.current.contains(event.target)
+      ) {
+        setExpanded(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [expanded]);
+
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const isScrolled = window.scrollY > 20;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrolled]);
+
+  // Navigation items with icons
+  const navItems = [
+    { path: "/", label: "Home", icon: "bi-house-door" },
+    { path: "/about", label: "About", icon: "bi-person" },
+    { path: "/skills", label: "Skills", icon: "bi-tools" },
+    { path: "/projects", label: "Projects", icon: "bi-folder" },
+    { path: "/contact", label: "Contact", icon: "bi-envelope" },
+  ];
+
+  // Calculate progress indicator
+  const currentIndex = navItems.findIndex((item) => {
+    if (item.path === "/") return location.pathname === "/";
+    return location.pathname.startsWith(item.path);
+  });
+  const progressPercentage =
+    currentIndex >= 0 ? ((currentIndex + 1) / navItems.length) * 100 : 0;
 
   return (
     <nav
-      className={`navbar navbar-expand-lg fixed-top ${scrolled ? "bg-dark-blue shadow-lg" : "bg-semi-transparent"}`}
-      style={{
-        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-        zIndex: 1030,
-        padding: "1rem 0",
-      }}
+      ref={navbarRef}
+      className={`navbar navbar-expand-lg navbar-light fixed-top transition-all ${scrolled ? "scrolled" : ""} ${expanded ? "navbar-expanded" : ""}`}
     >
-      <div className="container">
-        {/* Logo/Title with Animation */}
-        <div className="navbar-brand d-flex align-items-center">
-          <div className="position-relative me-3">
-            <i className="bi bi-cloud-lightning-rain-fill fs-1 text-warning"></i>
-            <div className="pulse-ring"></div>
+      <div className="container position-relative">
+        {/* Brand/Logo */}
+        <Link
+          className="navbar-brand d-flex align-items-center fw-bold text-decoration-none"
+          to="/"
+          onClick={closeNavbar}
+          onMouseEnter={() => setActiveHover("brand")}
+          onMouseLeave={() => setActiveHover(null)}
+        >
+          <div className="brand-icon me-3">
+            <i className="bi bi-code-slash fs-4"></i>
           </div>
           <div className="d-flex flex-column">
-            <h1 className="h3 mb-0 text-light fw-bold gradient-text">
-              WeatherCast Pro
-            </h1>
-            <small className="text-light opacity-75 d-flex align-items-center">
-              <i className="bi bi-lightning-charge-fill text-warning me-2"></i>
-              Live Global Updates
-            </small>
+            <span className="text-dark fs-4 fw-bold lh-1">YESHWOND</span>
+            <span className="text-gradient fs-6 fw-semibold">
+              Full Stack Developer
+            </span>
+          </div>
+        </Link>
+
+        {/* Bootstrap Icons Toggle Button */}
+        <button
+          className="navbar-toggler custom-toggler"
+          type="button"
+          onClick={() => setExpanded(!expanded)}
+          aria-expanded={expanded}
+          aria-label="Toggle navigation"
+        >
+          {expanded ? (
+            <i className="bi bi-x-lg fs-3"></i> /* X icon when expanded */
+          ) : (
+            <i className="bi bi-list fs-3"></i> /* Hamburger icon when collapsed */
+          )}
+        </button>
+
+        {/* Navbar Links */}
+        <div
+          className={`collapse navbar-collapse justify-content-between ${expanded ? "show" : ""}`}
+          id="navbarContent"
+        >
+          {/* Navigation Items */}
+          <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+            {navItems.map((item, index) => (
+              <li key={index} className="nav-item mx-1">
+                <Link
+                  className={`nav-link position-relative px-4 py-3 rounded-pill transition-all ${isActive(item.path)}`}
+                  to={item.path}
+                  onClick={closeNavbar}
+                  onMouseEnter={() => setActiveHover(item.path)}
+                  onMouseLeave={() => setActiveHover(null)}
+                >
+                  <i className={`bi ${item.icon} me-2`}></i>
+                  <span className="fw-medium">{item.label}</span>
+                  {/* Active indicator dot */}
+                  {isActive(item.path) && (
+                    <span className="active-dot position-absolute"></span>
+                  )}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Optional: Social icons or CTA button */}
+          <div className="d-lg-flex align-items-center mt-3 mt-lg-0">
+            <a
+              href="https://github.com/yeshumax"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline-dark btn-sm rounded-circle me-2"
+              aria-label="GitHub"
+            >
+              <i className="bi bi-github"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/yeshwond-lisanwork-430098397/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline-primary btn-sm rounded-circle me-2"
+              aria-label="LinkedIn"
+            >
+              <i className="bi bi-linkedin"></i>
+            </a>
           </div>
         </div>
+      </div>
 
-        {/* Animated Weather Indicators */}
-        <div className="d-none d-lg-flex align-items-center mx-auto">
-          <div className="weather-indicators d-flex gap-4">
-            <div className="indicator-item text-center px-4 py-3 rounded-pill glow-effect">
-              <i className="bi bi-thermometer-sun text-warning fs-4 d-block mb-2"></i>
-              <span className="text-light small fw-medium">Real-time</span>
-            </div>
-            <div className="indicator-item text-center px-4 py-3 rounded-pill glow-effect">
-              <i className="bi bi-globe-americas text-info fs-4 d-block mb-2"></i>
-              <span className="text-light small fw-medium">Global</span>
-            </div>
-            <div className="indicator-item text-center px-4 py-3 rounded-pill glow-effect">
-              <i className="bi bi-lightning-charge text-success fs-4 d-block mb-2"></i>
-              <span className="text-light small fw-medium">Instant</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Source Code Button with Glow */}
-        <div className="d-flex align-items-center">
-          <a
-            href="https://github.com/yeshumax"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-glow btn btn-lg d-flex align-items-center"
-          >
-            <i className="bi bi-github fs-5 me-2"></i>
-            <span className="fw-semibold">View Source Code</span>
-          </a>
-        </div>
+      {/* Progress Indicator */}
+      <div className="progress-indicator">
+        <div
+          className="progress-bar"
+          style={{
+            width: `${progressPercentage}%`,
+          }}
+        ></div>
       </div>
     </nav>
   );
